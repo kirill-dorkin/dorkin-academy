@@ -36,7 +36,9 @@ function estimate(body, quizzes) {
 export function makeLesson(c, recaps) {
   return ({ slug, title, summary, skill, now, body, quizzes, minutes }) => {
     recaps[slug] = now;
-    c.lesson({ slug, title, minutes: minutes ?? estimate(body, quizzes.length), summary, skill, body, quizzes });
+    const notes = body.filter((part) => typeof part === "string");
+    const quizCount = quizzes.length + body.length - notes.length;
+    c.lesson({ slug, title, minutes: minutes ?? estimate(notes, quizCount), summary, skill, body, quizzes });
   };
 }
 
