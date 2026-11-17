@@ -81,6 +81,14 @@ describe("FeedbackDialog", () => {
     expect(sentBody()).not.toHaveProperty("expected");
   });
 
+  it("links to human help in WhatsApp in a new tab", () => {
+    render(<FeedbackDialog open onClose={vi.fn()} />);
+    const help = screen.getByRole("link", { name: "Помощь в WhatsApp" });
+    expect(help).toHaveAttribute("href", "https://wa.me/996999901631");
+    expect(help).toHaveAttribute("target", "_blank");
+    expect(help).toHaveAttribute("rel", "noopener noreferrer");
+  });
+
   it("does not send a too short text", async () => {
     render(<FeedbackDialog open onClose={vi.fn()} />);
     const text = screen.getByLabelText("Что случилось?");

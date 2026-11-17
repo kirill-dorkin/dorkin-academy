@@ -13,6 +13,7 @@ import { usePathname } from "next/navigation";
 import { useId, useState, type SubmitEvent } from "react";
 import { browserApiRequest } from "../../lib/public-api";
 import { HOME_ORGANIZATION_SLUG } from "../../lib/public-learning-routes";
+import { HELP_WHATSAPP_URL } from "../../lib/site";
 import styles from "./feedback.module.css";
 
 type Kind = "problem" | "unclear" | "idea";
@@ -147,7 +148,14 @@ export function FeedbackDialog({
         <form className={styles.body} onSubmit={(event) => void submit(event)}>
           <p className={styles.hint}>
             Мы увидим, на какой странице вы были. Не пишите пароли и личные
-            данные.
+            данные. Нужен ответ человека?{" "}
+            <a
+              href={HELP_WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Помощь в WhatsApp
+            </a>
           </p>
           <div
             onChange={(event) => {

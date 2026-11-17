@@ -22,3 +22,6 @@ export function absoluteUrl(path = "/") {
 export function jsonLd(value: unknown) {
   return JSON.stringify(value).replace(/</g, "\\u003c");
 }
+
+/** Human help for learners during the beta, opened in a new tab. */
+export const HELP_WHATSAPP_URL = "https://wa.me/996999901631";

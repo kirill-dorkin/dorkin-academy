@@ -1,8 +1,10 @@
 import { brand } from "@platform/brand";
+import { Badge } from "@platform/ui";
 import { FeedbackLauncher } from "../feedback/feedback-launcher";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { LearningNavigation } from "./learning-navigation";
+import { HELP_WHATSAPP_URL } from "../../lib/site";
 import styles from "./site.module.css";
 
 /** Brand glyph: two connected nodes, drawn in the accent colour. */
@@ -23,7 +25,7 @@ export function BrandMark() {
   );
 }
 
-export function BrandLink() {
+export function BrandLink({ beta = false }: { beta?: boolean }) {
   return (
     <Link
       className={styles.brand}
@@ -32,6 +34,7 @@ export function BrandLink() {
     >
       <BrandMark />
       <span>{brand.name}</span>
+      {beta && <Badge tone="accent">Бета</Badge>}
     </Link>
   );
 }
@@ -56,7 +59,7 @@ export function LearningShell({
       </a>
       <header className={styles.header}>
         <div className={styles.headerInner}>
-          <BrandLink />
+          <BrandLink beta />
           <LearningNavigation />
         </div>
       </header>
@@ -87,6 +90,13 @@ export function LearningShell({
                 variant="ghost"
                 className={styles.footerAction}
               />
+              <a
+                href={HELP_WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Помощь в WhatsApp
+              </a>
             </div>
             <div>
               <span>Документы</span>
