@@ -116,14 +116,33 @@ export function createCourse(challenges = {}, stories = {}, recaps = {}, recapEx
       const [key, skillTitle, skillDescription] = skill;
       skills.push({ key, title: skillTitle, description: skillDescription });
       // A rewritten story body (stories/*.mjs) replaces the original prose of the lesson.
-      const parts = [recaps[slug] ? `${FENCE}recap\n${JSON.stringify({ now: recaps[slug], ...recapExtras })}\n${FENCE}` : "", ...(stories[slug] ?? body)];
-      const markdown = placeChallenges(parts.filter(Boolean).join("\n\n").trim(), challenges[slug] ?? []);
-      const blocks = [{ type: "markdown", markdown }];
-      quizzes.forEach((make, index) => {
-        const activitySlug = make(key);
-        const required = allRequired || index === 0;
-        blocks.push({ type: "activity", activitySlug, kind: required ? "practice" : "homework", required });
-      });
+      const parts = [recaps[slug] ? `${FENCE}recap\n${JSON.stringify({ now: recaps[slug], ...recapExtras })}\n${FENCE}` : "", ...(stories[slug] ?? body)].filter(Boolean);
+      // A quiz placed in the body (the same `single(...)` value) splits the notes: the learner answers mid-lesson.
+      const inline = parts.some((part) => typeof part === "function");
+      if (inline && challenges[slug]) throw new Error(`${slug}: inline quizzes and placed challenges do not mix`);
+      const blocks = [];
+      const notes = [];
+      let chunk = [];
+      let quizIndex = 0;
+      const flush = () => {
+        const text = chunk.join("\n\n").trim();
+        chunk = [];
+        if (!text) return;
+        const markdown = inline ? text : placeChallenges(text, challenges[slug] ?? []);
+        notes.push(markdown);
+        blocks.push({ type: "markdown", markdown });
+      };
+      const quiz = (make, midLesson) => {
+        const required = allRequired || quizIndex++ === 0;
+        blocks.push({ type: "activity", activitySlug: make(key), kind: required || midLesson ? "practice" : "homework", required });
+      };
+      for (const part of parts) {
+        if (typeof part === "function") { flush(); quiz(part, true); }
+        else chunk.push(part);
+      }
+      flush();
+      quizzes.forEach((make) => quiz(make, false));
+      const markdown = notes.join("\n\n");
       const assignment = assignments[slug];
       if (assignment) {
         const { slug: activitySlug, title: activityTitle, instructions, starterFiles, allowedFiles, checks, solutionFiles, entry = "index.html" } = assignment;
@@ -139,7 +158,7 @@ export function createCourse(challenges = {}, stories = {}, recaps = {}, recapEx
         blocks.push({ type: "activity", activitySlug, kind: "homework", required: false });
       }
       // `minutes` from the module sources is only a fallback for lessons without hands-on content.
-      const estimated = estimateMinutes(markdown, quizzes.length);
+      const estimated = estimateMinutes(markdown, quizIndex);
       lessons.push({ slug, title, summary, ...(currentChapter ? { chapter: currentChapter } : {}), durationMinutes: markdown.includes("```challenge") ? estimated : minutes, blocks });
     },
     single: (slug, title, question, list, correct, explanation) => (skillKey) =>
