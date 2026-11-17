@@ -30,7 +30,7 @@ export function BrandLink({ beta = false }: { beta?: boolean }) {
     <Link
       className={styles.brand}
       href="/"
-      aria-label={`${brand.name} — на главную`}
+      aria-label={`${brand.name}${beta ? " Бета" : ""} — на главную`}
     >
       <BrandMark />
       <span>{brand.name}</span>
