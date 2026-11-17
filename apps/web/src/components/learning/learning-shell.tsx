@@ -25,16 +25,15 @@ export function BrandMark() {
   );
 }
 
-export function BrandLink({ beta = false }: { beta?: boolean }) {
+export function BrandLink() {
   return (
     <Link
       className={styles.brand}
       href="/"
-      aria-label={`${brand.name}${beta ? " Бета" : ""} — на главную`}
+      aria-label={`${brand.name} — на главную`}
     >
       <BrandMark />
       <span>{brand.name}</span>
-      {beta && <Badge tone="accent">Бета</Badge>}
     </Link>
   );
 }
@@ -59,7 +58,11 @@ export function LearningShell({
       </a>
       <header className={styles.header}>
         <div className={styles.headerInner}>
-          <BrandLink beta />
+          {/* Outside the link: its name must contain its visible text (axe). */}
+          <span className={styles.brandRow}>
+            <BrandLink />
+            <Badge tone="accent">Бета</Badge>
+          </span>
           <LearningNavigation />
         </div>
       </header>
