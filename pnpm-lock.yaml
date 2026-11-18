@@ -6649,11 +6649,6 @@ snapshots:
       tslib: 2.9.1
     optional: true
 
-  '@tybys/wasm-util@0.10.4':
-    dependencies:
-      tslib: 2.9.1
-    optional: true
-
   '@types/aria-query@5.0.4': {}
 
   '@types/chai@5.2.3':
