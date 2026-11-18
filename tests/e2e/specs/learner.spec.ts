@@ -44,9 +44,7 @@ test("an anonymous visitor finds the course and practices without an account", a
   await page
     .getByRole("button", { name: "Проверить и сохранить ответ" })
     .click();
-  await expect(
-    page.getByText("Ответ готов к проверке — осталось войти")
-  ).toBeVisible();
+  await expect(page.getByText("Чтобы проверить ответ, войдите")).toBeVisible();
   await expect(
     page.getByRole("link", { name: "Создать аккаунт" })
   ).toHaveAttribute(

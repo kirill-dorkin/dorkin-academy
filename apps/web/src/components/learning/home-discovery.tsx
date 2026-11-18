@@ -221,7 +221,7 @@ export function HomeContent() {
         <div className={styles.heroCopy}>
           <p className={styles.badge}>
             <span className={styles.badgeDot} aria-hidden="true" />
-            Бесплатно · можно без регистрации
+            Бесплатно · уроки без регистрации
           </p>
           <h1 id="home-title">
             Разберитесь в IT.{" "}
@@ -229,8 +229,8 @@ export function HomeContent() {
           </h1>
           <p className={styles.lead}>
             Маршрут «IT с нуля»: компьютер, браузер, HTML, CSS, JavaScript и SQL
-            по порядку. Понятные уроки, живые примеры и задания с мгновенной
-            проверкой. Аккаунт нужен, только чтобы сохранить прогресс.
+            по порядку. Понятные уроки и живые примеры открыты без регистрации,
+            а задания с мгновенной проверкой — в бесплатном аккаунте.
           </p>
           <Suspense fallback={<HeroButtons href="/courses" />}>
             <HeroActions />
