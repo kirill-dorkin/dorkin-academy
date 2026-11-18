@@ -24,7 +24,7 @@
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "react-markdown": "10.1.0",
-    "three": "0.150.1"
+    "three": "0.187.0"
   },
   "devDependencies": {
     "@testing-library/dom": "10.4.2",
@@ -34,7 +34,7 @@
     "@types/node": "^24.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "@types/three": "0.150.2",
+    "@types/three": "0.187.0",
     "happy-dom": "20.0.10",
     "typescript": "^5.9.0"
   }
