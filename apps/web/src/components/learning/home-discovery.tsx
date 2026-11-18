@@ -113,14 +113,17 @@ function HowItWorks() {
             </span>
           </div>
           <h3>Проверка сразу</h3>
-          <p>Ответили — и тут же видно, верно ли. Ошиблись — попробуйте ещё.</p>
+          <p>
+            Войдите бесплатно — и после ответа сразу видно, верно ли. Ошиблись —
+            попробуйте ещё.
+          </p>
         </article>
         <article className={styles.tile}>
           <div className={styles.tileVisualProgress} aria-hidden="true">
             <span style={{ width: "62%" }} />
           </div>
           <h3>Прогресс сохраняется</h3>
-          <p>Закрыли вкладку — продолжите с того же места.</p>
+          <p>В аккаунте: закрыли вкладку — продолжите с того же места.</p>
         </article>
         <article className={`${styles.tile} ${styles.tileAccent}`}>
           <p className={styles.bigValue} aria-hidden="true">
@@ -221,7 +224,7 @@ export function HomeContent() {
         <div className={styles.heroCopy}>
           <p className={styles.badge}>
             <span className={styles.badgeDot} aria-hidden="true" />
-            Бесплатно · можно без регистрации
+            Бесплатно · уроки без регистрации
           </p>
           <h1 id="home-title">
             Разберитесь в IT.{" "}
@@ -229,8 +232,8 @@ export function HomeContent() {
           </h1>
           <p className={styles.lead}>
             Маршрут «IT с нуля»: компьютер, браузер, HTML, CSS, JavaScript и SQL
-            по порядку. Понятные уроки, живые примеры и задания с мгновенной
-            проверкой. Аккаунт нужен, только чтобы сохранить прогресс.
+            по порядку. Понятные уроки и живые примеры открыты без регистрации,
+            а задания с мгновенной проверкой — в бесплатном аккаунте.
           </p>
           <Suspense fallback={<HeroButtons href="/courses" />}>
             <HeroActions />
@@ -244,7 +247,9 @@ export function HomeContent() {
         <HowItWorks />
         <section className={styles.finalCta} aria-labelledby="final-title">
           <h2 id="final-title">Первый урок — через минуту.</h2>
-          <p>Начните с ПК — первый шаг маршрута. Регистрация не нужна.</p>
+          <p>
+            Начните с ПК — первый шаг маршрута. Читать можно без регистрации.
+          </p>
           <ButtonLink size="lg" href="/courses">
             Выбрать курс <ArrowRightIcon size={20} aria-hidden="true" />
           </ButtonLink>

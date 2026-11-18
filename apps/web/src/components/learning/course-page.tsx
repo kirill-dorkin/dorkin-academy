@@ -90,7 +90,7 @@ export function CoursePageView({
           </div>
           <aside className={styles.aside} aria-label="Начать курс">
             <section className={styles.courseStart}>
-              <p className={styles.startKicker}>Можно без регистрации</p>
+              <p className={styles.startKicker}>Уроки без регистрации</p>
               <Heading level={2} size="card">
                 Начните с первого урока
               </Heading>

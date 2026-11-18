@@ -209,7 +209,7 @@ test.describe("keyboard", () => {
       .focus();
     await page.keyboard.press("Enter");
     await expect(
-      page.getByText("Ответ готов к проверке — осталось войти")
+      page.getByText("Чтобы проверить ответ, войдите")
     ).toBeVisible();
   });
 });

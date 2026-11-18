@@ -208,6 +208,9 @@ describe("QuizForm", () => {
     expect(
       screen.getByRole("link", { name: "Создать аккаунт" })
     ).toHaveAttribute("href", `/login?returnTo=${returnTo}&mode=register`);
+    expect(
+      screen.queryByRole("button", { name: "Повторить отправку ответа" })
+    ).not.toBeInTheDocument();
   });
 
   it("offers a subscription when the check needs one (402) and keeps the answer unsaved", async () => {

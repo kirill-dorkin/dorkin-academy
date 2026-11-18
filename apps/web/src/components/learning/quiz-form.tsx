@@ -177,7 +177,7 @@ export function QuizForm({
               : "Введите короткий ответ"}
         </legend>
         <Text className={styles.quizHint} size="sm" muted>
-          Ответ проверится сразу. Если вы вошли, урок засчитается и персонаж
+          Проверка ответов — в бесплатном аккаунте: урок засчитается, а персонаж
           курса вырастет.
         </Text>
         {activity.type === "quiz.short_text" ? (
@@ -216,7 +216,7 @@ export function QuizForm({
           })
         )}
       </fieldset>
-      {!result && (
+      {!result && !needsLogin && (
         <Button loading={busy} disabled={!pending && !ready} type="submit">
           {busy
             ? "Проверяем…"
@@ -255,7 +255,7 @@ export function QuizForm({
       )}
       {needsLogin && (
         <div className={styles.quizSignup} role="status">
-          <strong>Ответ готов к проверке — осталось войти</strong>
+          <strong>Чтобы проверить ответ, войдите</strong>
           <p>
             Аккаунт бесплатный и создаётся за 20 секунд. После входа вы
             вернётесь к этому заданию.
