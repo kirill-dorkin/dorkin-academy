@@ -40,6 +40,9 @@ describe("password reset request", () => {
       screen.getByRole("button", { name: "Прислать ссылку" })
     );
     expect(await screen.findByText("Проверьте почту")).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "Создайте аккаунт" })
+    ).toHaveAttribute("href", "/login?mode=register");
     expect(api).toHaveBeenCalledWith("/v1/auth/password-reset/request", {
       method: "POST",
       body: JSON.stringify({ email: "learner@example.test" })
