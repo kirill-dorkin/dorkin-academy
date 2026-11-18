@@ -113,14 +113,17 @@ function HowItWorks() {
             </span>
           </div>
           <h3>Проверка сразу</h3>
-          <p>Ответили — и тут же видно, верно ли. Ошиблись — попробуйте ещё.</p>
+          <p>
+            Войдите бесплатно — и после ответа сразу видно, верно ли. Ошиблись —
+            попробуйте ещё.
+          </p>
         </article>
         <article className={styles.tile}>
           <div className={styles.tileVisualProgress} aria-hidden="true">
             <span style={{ width: "62%" }} />
           </div>
           <h3>Прогресс сохраняется</h3>
-          <p>Закрыли вкладку — продолжите с того же места.</p>
+          <p>В аккаунте: закрыли вкладку — продолжите с того же места.</p>
         </article>
         <article className={`${styles.tile} ${styles.tileAccent}`}>
           <p className={styles.bigValue} aria-hidden="true">
@@ -244,7 +247,9 @@ export function HomeContent() {
         <HowItWorks />
         <section className={styles.finalCta} aria-labelledby="final-title">
           <h2 id="final-title">Первый урок — через минуту.</h2>
-          <p>Начните с ПК — первый шаг маршрута. Регистрация не нужна.</p>
+          <p>
+            Начните с ПК — первый шаг маршрута. Читать можно без регистрации.
+          </p>
           <ButtonLink size="lg" href="/courses">
             Выбрать курс <ArrowRightIcon size={20} aria-hidden="true" />
           </ButtonLink>
